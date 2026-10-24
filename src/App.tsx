@@ -141,7 +141,7 @@ function ToolDetails({
 			{tool.error && <p className="text-destructive">{tool.error}</p>}
 			{tool.installError && <p className="text-destructive">{tool.installError}</p>}
 			{tool.dev && tool.latest && (
-				<p className="text-muted-foreground">
+				<p className="break-all text-muted-foreground">
 					The suite index has version {tool.latest.version}. To install it, remove this folder from{" "}
 					{list.devToolsFile}.
 				</p>
