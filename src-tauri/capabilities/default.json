@@ -1,0 +1,30 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "What the launcher window's page may call. Tool windows load remote pages and get no capability.",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "allow-list-tools",
+    "allow-start-tool",
+    "allow-open-in-browser",
+    "allow-open-logs",
+    "allow-check-updates",
+    "allow-install-tool",
+    "allow-roll-back-tool",
+    "allow-uninstall-tool",
+    "allow-open-release-notes",
+    "allow-get-settings",
+    "allow-save-settings",
+    "allow-update-launcher",
+    "allow-report-bug",
+    "allow-pick-image",
+    "allow-pick-program",
+    "allow-save-custom-tool",
+    "allow-remove-custom-tool",
+    "allow-open-custom-tool",
+    "allow-add-suggested-tool",
+    "allow-open-suggestion-page",
+    "allow-open-custom-homepage"
+  ]
+}

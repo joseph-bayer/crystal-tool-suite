@@ -1,0 +1,14 @@
+{
+  "id": "fake-tool",
+  "name": "Fake Tool",
+  "version": "0.0.1",
+  "description": "A tiny server for testing the launcher: it serves one page, starts a child process, and logs what the page may call.",
+  "icon": null,
+  "entry": {
+    "windows": { "command": "node", "args": ["server.mjs"] },
+    "macos": { "command": "node", "args": ["server.mjs"] },
+    "linux": { "command": "node", "args": ["server.mjs"] }
+  },
+  "folders": [],
+  "minLauncher": "0.1.0"
+}

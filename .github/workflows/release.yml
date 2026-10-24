@@ -1,0 +1,93 @@
+# Builds the launcher's signed installer when a version tag (v1.2.3) is pushed, and attaches it to
+# a draft GitHub Release with its updater signature, the updater feed (latest.json),
+# THIRD_PARTY_NOTICES.txt and SHA256SUMS.txt. Publishing the draft is done by hand; once
+# published, launchers already installed find the update at
+# .../releases/latest/download/latest.json.
+
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+
+jobs:
+  release:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+    env:
+      TAG: ${{ github.ref_name }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
+      - name: Versions match the tag
+        run: node scripts/check-versions.mjs --tag "$TAG"
+
+      - name: The update key is set up
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+        run: |
+          pubkey=$(node -p 'require("./src-tauri/tauri.conf.json").plugins.updater.pubkey')
+          if [ -z "${pubkey// /}" ]; then
+            echo "::error::plugins.updater.pubkey in src-tauri/tauri.conf.json is empty; see docs/RELEASING.md"
+            exit 1
+          fi
+          if [ -z "$TAURI_SIGNING_PRIVATE_KEY" ]; then
+            echo "::error::the TAURI_SIGNING_PRIVATE_KEY secret isn't set; see docs/RELEASING.md"
+            exit 1
+          fi
+
+      - name: Rust toolchain
+        run: |
+          rustup toolchain install stable --profile minimal
+          rustup default stable
+
+      - name: Install packages
+        run: npm ci
+
+      - name: Build the signed installer
+        env:
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        run: npx tauri build --ci --bundles nsis --config src-tauri/tauri.release.conf.json
+
+      # The tag's message (git tag -a v1.2.3 -m "...") becomes the release notes, shown in the
+      # launcher's "Update available" and on the release page. A tag without one gives none.
+      - name: Release notes from the tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          object=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$TAG" --jq '.object.type + " " + .object.sha')
+          : > "$RUNNER_TEMP/notes.md"
+          if [ "${object%% *}" = tag ]; then
+            gh api "repos/$GITHUB_REPOSITORY/git/tags/${object#* }" --jq .message > "$RUNNER_TEMP/notes.md"
+          fi
+
+      - name: Release files
+        run: >-
+          node scripts/release-files.mjs
+          --repo "$GITHUB_REPOSITORY" --tag "$TAG" --out "$RUNNER_TEMP/release"
+          --notes-file "$RUNNER_TEMP/notes.md"
+
+      - name: Draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" --draft --verify-tag \
+            --repo "$GITHUB_REPOSITORY" \
+            --title "Crystal Tool Suite $TAG" \
+            --notes-file "$RUNNER_TEMP/notes.md" \
+            "$RUNNER_TEMP"/release/*

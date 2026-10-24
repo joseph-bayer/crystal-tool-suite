@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "tools": [],
+  "customTools": [
+    {
+      "id": "gen2-attack-animation-editor",
+      "name": "Gen 2 Attack Animation Editor",
+      "author": "SoupPotato",
+      "description": "Edits Gen 2 move animations in the browser.",
+      "kind": "web",
+      "url": "https://souppotato.github.io/Gen2-Attack-Animation-Editor/"
+    },
+    {
+      "id": "siren",
+      "name": "Siren",
+      "author": "mauvesea",
+      "description": "Converts WAV files to pokecrystal cries.",
+      "kind": "program",
+      "homepage": "https://github.com/mauvesea/siren"
+    }
+  ]
+}
