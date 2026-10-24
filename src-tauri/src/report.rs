@@ -60,10 +60,10 @@ mod tests {
 
 	#[test]
 	fn builds_github_issue_urls() {
-		let url = issue_url("https://github.com/joseph-bayer/gen1-map-porter", "a b\n&c").unwrap();
+		let url = issue_url("https://github.com/joseph-bayer/gen-1-map-porter", "a b\n&c").unwrap();
 		assert_eq!(
 			url,
-			"https://github.com/joseph-bayer/gen1-map-porter/issues/new?body=a+b%0A%26c"
+			"https://github.com/joseph-bayer/gen-1-map-porter/issues/new?body=a+b%0A%26c"
 		);
 		assert_eq!(
 			issue_url("https://github.com/o/r.git/", "x").as_deref(),

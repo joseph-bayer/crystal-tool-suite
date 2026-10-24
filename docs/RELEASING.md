@@ -162,13 +162,13 @@ Once the tool's release is published, edit `index.json` on `main`. For a new too
   "name": "Gen 1 Map Porter",
   "description": "Ports Gen 1 maps into a Crystal project",
   "icon": "<an https address of its icon, or null>",
-  "repo": "https://github.com/joseph-bayer/gen1-map-porter",
+  "repo": "https://github.com/joseph-bayer/gen-1-map-porter",
   "latest": {
     "version": "1.0.0",
-    "notesUrl": "https://github.com/joseph-bayer/gen1-map-porter/releases/tag/v1.0.0",
+    "notesUrl": "https://github.com/joseph-bayer/gen-1-map-porter/releases/tag/v1.0.0",
     "downloads": {
       "windows": {
-        "url": "https://github.com/joseph-bayer/gen1-map-porter/releases/download/v1.0.0/gen1-map-porter-1.0.0-windows.zip",
+        "url": "https://github.com/joseph-bayer/gen-1-map-porter/releases/download/v1.0.0/gen1-map-porter-1.0.0-windows.zip",
         "sha256": "<the zip's SHA-256>"
       }
     }

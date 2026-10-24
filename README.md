@@ -9,7 +9,7 @@ them up to date and lets you roll back an update that broke something. Each tool
 window. You can add your own favorite tools too, whether a web page or a program on your computer.
 
 **Tools in the suite:**
-- [Gen 1 Map Porter](https://github.com/joseph-bayer/gen1-map-porter): bring Red, Blue and Yellow
+- [Gen 1 Map Porter](https://github.com/joseph-bayer/gen-1-map-porter): bring Red, Blue and Yellow
   maps into a CrystalShireEngine, pokecrystal or Polished Crystal project.
 
 ## Installing

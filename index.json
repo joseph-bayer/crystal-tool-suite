@@ -1,6 +1,25 @@
 {
   "schema": 1,
-  "tools": [],
+  "tools": [
+    {
+      "id": "gen1-map-porter",
+      "name": "Gen 1 Map Porter",
+      "description": "Ports Red, Blue and Yellow maps, with their events, into a Crystal project: CrystalShireEngine, pokecrystal or Polished Crystal.",
+      "icon": null,
+      "repo": "https://github.com/joseph-bayer/gen-1-map-porter",
+      "latest": {
+        "version": "0.1.0",
+        "notesUrl": "https://github.com/joseph-bayer/gen-1-map-porter/releases/tag/v0.1.0",
+        "downloads": {
+          "windows": {
+            "url": "https://github.com/joseph-bayer/gen-1-map-porter/releases/download/v0.1.0/gen1-map-porter-0.1.0-windows.zip",
+            "sha256": "69f9f5ad9d416490cc0cd35fe59a945ea65b2973923d79d0b65a33fb4ed21468"
+          }
+        }
+      }
+    }
+  ],
+
   "customTools": [
     {
       "id": "gen2-attack-animation-editor",

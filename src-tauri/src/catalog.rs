@@ -9,7 +9,7 @@
 //!     "name": "Gen 1 Map Porter",
 //!     "description": "Ports Gen 1 maps into a Crystal project",
 //!     "icon": "https://.../icon.png",
-//!     "repo": "https://github.com/joseph-bayer/gen1-map-porter",
+//!     "repo": "https://github.com/joseph-bayer/gen-1-map-porter",
 //!     "latest": {
 //!       "version": "1.1.0",
 //!       "notes": "What's new, as text",
