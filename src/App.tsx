@@ -464,9 +464,9 @@ export function App() {
 							</div>
 						</div>
 					)}
-					{launcher?.error && <p className="text-sm text-destructive">{launcher.error}</p>}
-					{list?.indexError && <p className="text-sm text-destructive">{list.indexError}</p>}
-					{error && <p className="text-sm text-destructive">{error}</p>}
+					{launcher?.error && <p className="text-sm text-destructive [overflow-wrap:anywhere]">{launcher.error}</p>}
+					{list?.indexError && <p className="text-sm text-destructive [overflow-wrap:anywhere]">{list.indexError}</p>}
+					{error && <p className="text-sm text-destructive [overflow-wrap:anywhere]">{error}</p>}
 				</section>
 			)}
 
@@ -505,7 +505,7 @@ export function App() {
 								Add a custom tool
 							</Button>
 						</div>
-						{list?.customError && <p className="text-sm text-destructive">{list.customError}</p>}
+						{list?.customError && <p className="text-sm text-destructive [overflow-wrap:anywhere]">{list.customError}</p>}
 						{list && list.customTools.length === 0 && (
 							<p className="text-sm text-muted-foreground">
 								Tools the suite doesn't ship: a web page, or a program on this computer.
@@ -535,7 +535,7 @@ export function App() {
 
 					<section className="flex flex-col gap-3">
 						<h2 className="text-lg font-medium">Recent projects</h2>
-						{list?.projectsError && <p className="text-sm text-destructive">{list.projectsError}</p>}
+						{list?.projectsError && <p className="text-sm text-destructive [overflow-wrap:anywhere]">{list.projectsError}</p>}
 						{list && list.projects.length === 0 && !list.projectsError && (
 							<p className="text-sm text-muted-foreground">
 								None yet. The folders you choose in the suite's tools show here.
@@ -610,7 +610,7 @@ export function App() {
 				</div>
 
 				{list && (selectedTool || selectedCustom) && (
-					<aside className="flex w-full flex-col gap-3 rounded-xl p-4 text-sm ring-1 ring-foreground/10 md:sticky md:top-6 md:w-80 md:shrink-0">
+					<aside className="flex w-full min-w-0 flex-col gap-3 rounded-xl p-4 text-sm [overflow-wrap:anywhere] ring-1 ring-foreground/10 md:sticky md:top-6 md:w-80 md:shrink-0">
 						<div className="flex items-center gap-3">
 							<ToolImage
 								src={selectedTool ? selectedTool.icon : (selectedCustom?.image ?? null)}
